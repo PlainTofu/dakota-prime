@@ -1,0 +1,45 @@
+name: Build and Publish Custom Dakota (AMD Overclock)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'  # Daily at 4am UTC
+
+env:
+  IMAGE_NAME: dakota
+  IMAGE_REGISTRY: ghcr.io/plaintofu
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | \
+            sudo podman login ghcr.io --username ${{ github.actor }} --password-stdin
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +%Y%m%d)" >> $GITHUB_OUTPUT
+
+      - name: Build image from Containerfile
+        run: |
+          sudo podman build \
+            -t "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:latest" \
+            -t "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.date }}" \
+            -f ./Containerfile .
+
+      - name: Push to GHCR
+        run: |
+          sudo podman push --compression-format=zstd \
+            "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+          sudo podman push --compression-format=zstd \
+            "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.date.outputs.date }}"
