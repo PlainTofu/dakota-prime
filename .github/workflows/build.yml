@@ -8,7 +8,7 @@ on:
     - cron: '0 4 * * *'  # Daily at 4am UTC
 
 env:
-  IMAGE_NAME: dakota
+  IMAGE_NAME: dakota-prime
   IMAGE_REGISTRY: ghcr.io/plaintofu
 
 jobs:
