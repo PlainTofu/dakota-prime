@@ -1,4 +1,4 @@
-FROM ghcr.io/projectbluefin/dakota:latest
+FROM ghcr.io/projectbluefin/dakota-gaming:latest
 
 # AMD overclocking
 COPY build_scripts/amd-overclock.sh /tmp/amd-overclock.sh
