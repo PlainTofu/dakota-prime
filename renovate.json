@@ -1,5 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "repositories": ["PlainTofu/dakota-prime"],
   "extends": ["config:recommended"],
   "packageRules": [
     {
