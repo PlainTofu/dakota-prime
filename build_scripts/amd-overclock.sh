@@ -16,7 +16,7 @@ echo "==> Enabling AMD GPU overdrive kernel parameter..."
 # for kernel args in a composefs/UKI image like Dakota.
 install -d /usr/lib/bootc/kargs.d
 
-cat > /usr/lib/bootc/kargs.d/amd-overdrive.toml << 'EOF'
+cat > /usr/lib/bootc/kargs.d/99-custom.toml << 'EOF'
 # Enable AMD GPU Overdrive (overclocking support)
 # Required by LACT and other AMD GPU tuning tools.
 # Without this, the amdgpu driver blocks all clock/voltage changes.
