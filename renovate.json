@@ -8,7 +8,7 @@
       "matchDatasources": ["docker"],
       "matchPackageNames": ["ghcr.io/projectbluefin/dakota-gaming"],
       "pinDigests": true,
-      "automerge": false
+      "automerge": true
     }
   ]
 }
