@@ -1,4 +1,4 @@
-FROM ghcr.io/projectbluefin/dakota-gaming:stable@sha256:2fe16ba9b865bf35dabc396f23222e1902b5fa309f5fa1dd335f8b8a9ecfe165
+FROM ghcr.io/projectbluefin/dakota-gaming:stable@sha256:9e95f85dd2317f21457078874dd362463ec4897d53e44b973e181624e7312d3b
 
 # AMD overclocking
 COPY build_scripts/amd-overclock.sh /tmp/amd-overclock.sh
